@@ -1,1 +1,91 @@
-<p>company-list works!</p>
+<div class="text-center">
+    <h1 class="mt-2 mb-4">Companies List</h1>
+    <table class="table table-striped">
+      <thead>
+        <tr>
+          <th scope="col">#</th>
+          <th scope="col">Name</th>
+          <th scope="col">Document</th>
+          <th scope="col">Email</th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let company of companies">
+          <th scope="row">{{ company.id }}</th>
+          <td>{{ company.name }}</td>
+          <td>{{ company.document }}</td>
+          <td>{{ company.email }}</td>
+          <td style="display: flex;">
+            <button
+              type="button"
+              class="btn btn-sm btn-primary mx-1 my-1"
+              [routerLink]="['/products/edit', company.id]"
+            >
+              Edit
+            </button>
+            <button
+              type="button"
+              class="btn btn-sm btn-danger mx-1 my-1"
+              data-toggle="modal"
+              data-target="#deleteModal"
+              (click)="setSelectedProduct(product)"
+            >
+              Delete
+            </button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+    <button
+      type="button"
+      class="btn btn-success mx-auto"
+      routerLink="/products/new"
+    >
+      Adicionar
+    </button>
+    <!-- Start modal -->
+    <div
+      class="modal fade"
+      id="deleteModal"
+      tabindex="-1"
+      role="dialog"
+      aria-labelledby="deleteModelLabel"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="deleteModelLabel">
+              Delete product
+            </h5>
+            <button
+              type="button"
+              class="close"
+              data-dismiss="modal"
+              aria-label="Close"
+            >
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body text-danger">
+            <p>Are you sure, you want to delete?</p>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">
+              Close
+            </button>
+            <button
+              type="button"
+              class="btn btn-primary"
+              (click)="deleteProduct()"
+              data-dismiss="modal"
+            >
+              Delete
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- End modal -->
+  </div>

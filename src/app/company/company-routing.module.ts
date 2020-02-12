@@ -9,7 +9,7 @@ const routes: Routes = [
     component: CompanyListComponent
   },
   {
-    path: "company/:id",
+    path: "company/edit/id",
     component: CompanyEditComponent
   }
 ];

@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { CompanyService } from 'src/app/services/company.service';
+import { Company } from 'src/app/models/company';
 
 @Component({
   selector: 'app-company-list',
@@ -7,9 +9,18 @@ import { Component, OnInit } from '@angular/core';
 })
 export class CompanyListComponent implements OnInit {
 
-  constructor() { }
+  companies: Company[];
+
+  constructor(private service: CompanyService) { }
 
   ngOnInit() {
+    this.getAll();
+  }
+
+  getAll(){
+    this.service.getAll().subscribe((companies: Company[]) =>{
+      this.companies = companies;
+    });
   }
 
 }
