@@ -10,7 +10,7 @@ describe('workspace-project App', () => {
 
   it('should display welcome message', () => {
     page.navigateTo();
-    expect(page.getTitleText()).toEqual('pi-backend app is running!');
+    expect(page.getTitleText()).toEqual('pi-angular app is running!');
   });
 
   afterEach(async () => {
