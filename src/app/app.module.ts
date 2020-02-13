@@ -7,9 +7,10 @@ import { CompanyModule } from "./company/company.module";
 import { HttpClientModule } from "@angular/common/http";
 import { NgbModule } from "@ng-bootstrap/ng-bootstrap";
 import { ModalDeleteComponent } from './modal-delete/modal-delete.component';
+import { ModalComponent } from './modal/modal.component';
 
 @NgModule({
-  declarations: [AppComponent, ModalDeleteComponent],
+  declarations: [AppComponent, ModalDeleteComponent, ModalComponent],
   imports: [
     BrowserModule,
     CompanyModule,
@@ -17,7 +18,7 @@ import { ModalDeleteComponent } from './modal-delete/modal-delete.component';
     HttpClientModule,
     NgbModule
   ],
-  entryComponents: [ModalDeleteComponent],
+  entryComponents: [ModalDeleteComponent, ModalComponent],
   providers: [],
   bootstrap: [AppComponent]
 })

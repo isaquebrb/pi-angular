@@ -26,6 +26,24 @@ export class CompanyService {
       .pipe(retry(2), catchError(this.handleError));
   }
 
+  getById(id: number): Observable<Company> {
+    return this.httpClient
+      .get<Company>(this.url + "/" + id)
+      .pipe(retry(2), catchError(this.handleError));
+  }
+
+  save(company: Company): Observable<Company>{
+    return this.httpClient
+    .post<Company>(this.url, JSON.stringify(company))
+    .pipe(retry(2), catchError(this.handleError));
+  }
+
+  update(company: Company): Observable<Company>{
+    return this.httpClient
+    .put<Company>(this.url, JSON.stringify(company))
+    .pipe(retry(2), catchError(this.handleError));
+  }
+
   delete(id: number) {
     return this.httpClient
       .delete(`${this.url}/${id}`, this.httpOptions)
@@ -39,8 +57,7 @@ export class CompanyService {
       errorMessage = error.error.message;
     } else {
       //Erro ocorreu no lado do servidor
-      errorMessage =
-        "Código do erro: ${error.status}, " + "mensagem: ${error.message}";
+      errorMessage = `Código do erro: ${error.status}, mensagem: ${error.message}`;
     }
 
     console.log(errorMessage);

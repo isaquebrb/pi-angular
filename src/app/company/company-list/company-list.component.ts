@@ -3,6 +3,7 @@ import { CompanyService } from "src/app/services/company.service";
 import { Company } from "src/app/models/company";
 import { NgbModal } from "@ng-bootstrap/ng-bootstrap";
 import { ModalDeleteComponent } from "src/app/modal-delete/modal-delete.component";
+import { ModalComponent } from 'src/app/modal/modal.component';
 
 @Component({
   selector: "app-company-list",
@@ -34,9 +35,17 @@ export class CompanyListComponent implements OnInit {
     modal.result.then(
       () => {
         //on close
-        this.service.delete(company.id).subscribe(() => {
-          this.getAll();
-        });
+        this.service.delete(company.id).subscribe(
+          () => {
+            this.getAll();
+          },
+          error => {
+            this.modalService.dismissAll
+            const errorModal = this.modalService.open(ModalComponent);
+            errorModal.componentInstance.modalTitle = `Error`;
+            errorModal.componentInstance.modalContent = `An error occurred while deleting company '${company.name}'.`;
+          }
+        );
       },
       () => {
         //on dismiss do nothing

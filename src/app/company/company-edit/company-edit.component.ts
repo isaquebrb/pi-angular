@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-company-edit',
@@ -7,9 +8,28 @@ import { Component, OnInit } from '@angular/core';
 })
 export class CompanyEditComponent implements OnInit {
 
-  constructor() { }
+  editCompanyForm: FormGroup;
+
+  constructor(private formBuilder: FormBuilder) { }
 
   ngOnInit() {
+    this.createForm();
+  }
+
+  createForm(){
+    this.editCompanyForm = this.formBuilder.group({
+      name: ['', [Validators.required, Validators.maxLength(50)]],
+      document: ['', [Validators.required, Validators.maxLength(15)]],
+      email: ['', Validators.email]
+    });
+  }
+
+  onReset(){
+
+  }
+
+  onCancel(){
+
   }
 
 }
