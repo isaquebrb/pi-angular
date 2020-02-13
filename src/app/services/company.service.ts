@@ -26,6 +26,12 @@ export class CompanyService {
       .pipe(retry(2), catchError(this.handleError));
   }
 
+  delete(id: number) {
+    return this.httpClient
+      .delete(`${this.url}/${id}`, this.httpOptions)
+      .pipe(retry(1), catchError(this.handleError));
+  }
+
   handleError(error: HttpErrorResponse) {
     let errorMessage = "";
     if (error.error instanceof ErrorEvent) {

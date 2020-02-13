@@ -5,12 +5,17 @@ import { CompanyEditComponent } from "./company-edit/company-edit.component";
 
 const routes: Routes = [
   {
-    path: "company",
-    component: CompanyListComponent
-  },
-  {
-    path: "company/edit/id",
-    component: CompanyEditComponent
+    path: "companies",
+    children: [
+      {
+        path: "",
+        component: CompanyListComponent
+      },
+      {
+        path: "edit/:id",
+        component: CompanyEditComponent
+      }
+    ]
   }
 ];
 
