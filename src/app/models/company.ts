@@ -6,6 +6,6 @@ export interface Company {
     name: string;
     document: string;
     email: string;
-    phones: Phone;
+    phones: Phone[];
     address: Address;
 }

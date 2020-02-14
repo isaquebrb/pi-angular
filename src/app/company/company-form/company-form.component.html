@@ -1,0 +1,62 @@
+<div style="max-width: 40rem;" class="mx-auto">
+  <h1 class="text-center mb-3">{{ formTitle }}</h1>
+  <form [formGroup]="companyForm" (ngSubmit)="submitForm()">
+    <div class="form-group row">
+      <div class="col">
+        <label for="inputName">Name</label>
+        <input type="text" class="form-control" id="inputName" placeholder="Enter Name" formControlName="name"
+          maxlength="50" />
+        <div *ngIf="submitted && companyForm.controls.name.hasError('required')" class="alert alert-danger">
+          Required
+        </div>
+      </div>
+      <div class="col">
+        <label for="inputDocument">Document</label>
+        <input type="text" class="form-control" id="inputDocument" placeholder="CPF or CNPJ" formControlName="document"
+          maxlength="15" />
+        <div *ngIf="
+            submitted && companyForm.controls.document.hasError('required')
+          " class="alert alert-danger">
+          Required
+        </div>
+      </div>
+    </div>
+    <div class="form-group">
+      <label for="inputEmail">Email</label>
+      <input type="email" class="form-control" id="inputEmail" placeholder="example@email.com"
+        formControlName="email" />
+      <div *ngIf="submitted && companyForm.controls.email.hasError('email')" class="alert alert-danger">
+        Email format invalid
+      </div>
+    </div>
+    <div formGroupName="address">
+      <div class="form-group row">
+        <div class="col">
+          <label for="inputCep">Cep</label>
+          <input type="text" class="form-control" id="inputCep" formControlName="cep" maxlength="9" />
+        </div>
+        <div class="col">
+          <label for="inputNumber">Number</label>
+          <input type="number" class="form-control" id="inputNumber" formControlName="number" />
+        </div>
+      </div>
+      <div class="form-group row">
+        <div class="col">
+          <label for="inputCity">City</label>
+          <input type="text" class="form-control" id="inputCity" formControlName="city" />
+        </div>
+        <div class="col">
+          <label for="inputState">State</label>
+          <input type="text" class="form-control" id="inputState" formControlName="state" />
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="inputStreet">Street</label>
+        <input type="text" class="form-control" id="inputStreet" formControlName="street" />
+      </div>
+    </div>
+    <button type="submit" class="btn btn-primary mx-1">Submit</button>
+    <button type="reset" class="btn btn-secondary mx-1" (click)="onReset()">Reset</button>
+    <button type="button" class="btn btn-danger mx-1" (click)="onReset(); onCancel()">Cancel</button>
+  </form>
+</div>
